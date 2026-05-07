@@ -1,5 +1,6 @@
 import { Link, NavLink, useNavigate, useLocation } from 'react-router-dom';
 import { Dog, ShoppingCart, ShieldCheck, Search, User } from 'lucide-react';
+import { Badge, Tooltip, IconButton } from '@mui/material';
 import { useCart } from '../context/CartContext';
 
 export default function Navbar() {
@@ -37,10 +38,13 @@ export default function Navbar() {
           </form>
 
           <div className="nav-actions">
-            <Link to="/cart" className="cart-btn">
-              <ShoppingCart size={24} />
-              {cartItems.length > 0 && <span className="cart-badge">{cartItems.length}</span>}
-            </Link>
+            <Tooltip title="View Shopping Cart">
+              <Link to="/cart" className="cart-btn" style={{ padding: '8px' }}>
+                <Badge badgeContent={cartItems.length} color="warning" overlap="circular">
+                  <ShoppingCart size={24} />
+                </Badge>
+              </Link>
+            </Tooltip>
             <NavLink 
               to="/" 
               className={`btn ${isUserMode ? 'btn-admin-active' : 'btn-secondary'}`}

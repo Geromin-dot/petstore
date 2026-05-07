@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react';
 import axios from 'axios';
 import { Plus } from 'lucide-react';
+import { Dialog, DialogTitle, DialogContent, Snackbar, Alert } from '@mui/material';
 import PetList from '../components/PetList';
 import AddPetForm from '../components/AddPetForm';
 
@@ -11,6 +12,7 @@ export default function Admin() {
   const [loading, setLoading] = useState(true);
   const [showAddForm, setShowAddForm] = useState(false);
   const [editingPet, setEditingPet] = useState(null);
+  const [notification, setNotification] = useState({ open: false, message: '', severity: 'success' });
 
   const fetchPets = async () => {
     try {
@@ -44,9 +46,11 @@ export default function Admin() {
       
       setShowAddForm(false);
       setEditingPet(null);
+      setNotification({ open: true, message: editingPet ? 'Pet updated successfully!' : 'New pet added successfully!', severity: 'success' });
       fetchPets();
     } catch (error) {
       console.error('Error saving pet:', error);
+      setNotification({ open: true, message: 'Failed to save pet.', severity: 'error' });
     }
   };
 
@@ -58,9 +62,11 @@ export default function Admin() {
   const handleDeletePet = async (id) => {
     try {
       await axios.delete(`${API_URL}/${id}`);
+      setNotification({ open: true, message: 'Pet deleted successfully.', severity: 'info' });
       fetchPets();
     } catch (error) {
       console.error('Error deleting pet:', error);
+      setNotification({ open: true, message: 'Error deleting pet.', severity: 'error' });
     }
   };
 
@@ -79,13 +85,32 @@ export default function Admin() {
         <PetList pets={pets} isAdminView={true} onDelete={handleDeletePet} onEdit={handleEditClick} />
       )}
 
-      {showAddForm && (
-        <AddPetForm 
-          initialData={editingPet}
-          onSubmit={handleAddPet} 
-          onCancel={() => { setShowAddForm(false); setEditingPet(null); }} 
-        />
-      )}
+      <Dialog 
+        open={showAddForm} 
+        onClose={() => { setShowAddForm(false); setEditingPet(null); }}
+        maxWidth="sm"
+        fullWidth
+      >
+        <DialogTitle>{editingPet ? 'Edit Pet Details' : 'Add New Pet'}</DialogTitle>
+        <DialogContent>
+          <AddPetForm 
+            initialData={editingPet}
+            onSubmit={handleAddPet} 
+            onCancel={() => { setShowAddForm(false); setEditingPet(null); }} 
+          />
+        </DialogContent>
+      </Dialog>
+
+      <Snackbar 
+        open={notification.open} 
+        autoHideDuration={4000} 
+        onClose={() => setNotification({ ...notification, open: false })}
+        anchorOrigin={{ vertical: 'bottom', horizontal: 'right' }}
+      >
+        <Alert onClose={() => setNotification({ ...notification, open: false })} severity={notification.severity} variant="filled" sx={{ width: '100%' }}>
+          {notification.message}
+        </Alert>
+      </Snackbar>
     </div>
   );
 }

@@ -2,6 +2,7 @@ import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import { CheckCircle } from 'lucide-react';
+import { Alert, AlertTitle, Container, Typography, Box } from '@mui/material';
 import { useCart } from '../context/CartContext';
 
 export default function Checkout() {
@@ -44,14 +45,23 @@ export default function Checkout() {
 
   if (success) {
     return (
-      <div className="empty-state card">
-        <CheckCircle size={64} color="var(--success)" style={{ margin: '0 auto', marginBottom: '1rem' }} />
-        <h2>Order Confirmed!</h2>
-        <p>Thank you for giving these pets a new home.</p>
-        <button className="btn" onClick={() => navigate('/')} style={{ marginTop: '2rem' }}>
-          Return to Store
-        </button>
-      </div>
+      <Container maxWidth="sm" sx={{ py: 8 }}>
+        <Alert 
+          severity="success" 
+          icon={<CheckCircle size={40} />}
+          sx={{ borderRadius: '1rem', p: 4 }}
+        >
+          <AlertTitle sx={{ fontSize: '1.5rem', fontWeight: 'bold' }}>Order Confirmed!</AlertTitle>
+          <Typography variant="body1">
+            Thank you for giving these pets a new home. Your order has been placed successfully.
+          </Typography>
+          <Box sx={{ mt: 4 }}>
+            <button className="btn" onClick={() => navigate('/')}>
+              Return to Store
+            </button>
+          </Box>
+        </Alert>
+      </Container>
     );
   }
 
