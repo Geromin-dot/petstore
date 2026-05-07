@@ -1,0 +1,44 @@
+services:
+  - type: web
+    name: petstore-backend
+    env: docker
+    region: oregon
+    plan: free
+    dockerfilePath: ./backend/Dockerfile
+    dockerContext: ./backend
+    branch: main
+    envVars:
+      - key: DATABASE_URL
+        fromDatabase:
+          name: petstore-db
+          property: connectionString
+      - key: DATABASE_USERNAME
+        fromDatabase:
+          name: petstore-db
+          property: user
+      - key: DATABASE_PASSWORD
+        fromDatabase:
+          name: petstore-db
+          property: password
+
+  - type: web
+    name: petstore-frontend
+    env: static
+    region: oregon
+    plan: free
+    buildCommand: cd frontend && npm install && npm run build
+    staticPublishPath: frontend/dist
+    branch: main
+    envVars:
+      - key: VITE_API_URL
+        fromService:
+          type: web
+          name: petstore-backend
+          envVarKey: RENDER_EXTERNAL_URL
+
+databases:
+  - name: petstore-db
+    databaseName: petstore
+    user: postgres
+    region: oregon
+    plan: free
