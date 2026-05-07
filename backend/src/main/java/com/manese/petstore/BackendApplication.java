@@ -10,7 +10,7 @@ public class BackendApplication {
 		String dbUrl = System.getenv("DATABASE_URL");
 		if (dbUrl != null && dbUrl.startsWith("postgres://")) {
 			String jdbcUrl = dbUrl.replace("postgres://", "jdbc:postgresql://");
-			System.setProperty("spring.datasource.url", jdbcUrl);
+			System.setProperty("JDBC_DATABASE_URL", jdbcUrl);
 		}
 		SpringApplication.run(BackendApplication.class, args);
 	}

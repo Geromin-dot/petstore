@@ -18,23 +18,23 @@ export default function CartPage() {
   return (
     <div className="cart-page">
       <h1 style={{ marginBottom: '2rem' }}>Shopping Cart</h1>
-      
+
       <div className="cart-container" style={{ display: 'grid', gridTemplateColumns: '2fr 1fr', gap: '2rem' }}>
         <div className="cart-items">
           {cartItems.map((item) => (
             <div key={item.id} className="card" style={{ display: 'flex', gap: '1rem', marginBottom: '1rem', padding: '1rem' }}>
-              <img 
-                src={item.imageUrl || 'https://via.placeholder.com/100'} 
-                alt={item.name} 
-                style={{ width: '100px', height: '100px', objectFit: 'cover', borderRadius: '0.5rem' }} 
+              <img
+                src={item.imageUrl || 'https://via.placeholder.com/100'}
+                alt={item.name}
+                style={{ width: '100px', height: '100px', objectFit: 'cover', borderRadius: '0.5rem' }}
               />
               <div style={{ flex: 1 }}>
                 <h3>{item.name}</h3>
                 <p style={{ color: 'var(--text-muted)' }}>{item.breed}</p>
                 <p style={{ fontWeight: 'bold', color: 'var(--success)', marginTop: '0.5rem' }}>${item.price?.toFixed(2) || '0.00'}</p>
               </div>
-              <button 
-                className="btn-danger" 
+              <button
+                className="btn-danger"
                 onClick={() => removeFromCart(item.id)}
                 style={{ padding: '0.5rem', borderRadius: '0.5rem', border: 'none', background: 'transparent', alignSelf: 'flex-start' }}
               >
@@ -43,7 +43,7 @@ export default function CartPage() {
             </div>
           ))}
         </div>
-        
+
         <div className="cart-summary card" style={{ height: 'fit-content' }}>
           <h2>Order Summary</h2>
           <div style={{ display: 'flex', justifyContent: 'space-between', margin: '1.5rem 0', paddingBottom: '1rem', borderBottom: '1px solid var(--border-color)' }}>
