@@ -16,6 +16,7 @@ public class OrderItem {
     
     @ManyToOne
     @JoinColumn(name = "pet_id")
+    @org.hibernate.annotations.OnDelete(action = org.hibernate.annotations.OnDeleteAction.CASCADE)
     private Pet pet;
     
     private Double priceAtPurchase;
