@@ -20,6 +20,8 @@ services:
         fromDatabase:
           name: petstore-db
           property: password
+      - key: DATABASE_PLATFORM
+        value: org.hibernate.dialect.PostgreSQLDialect
 
   - type: web
     name: petstore-frontend
