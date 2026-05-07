@@ -26,7 +26,6 @@ services:
   - type: web
     name: petstore-frontend
     env: static
-    region: oregon
     plan: free
     buildCommand: cd frontend && npm install && npm run build
     staticPublishPath: frontend/dist
@@ -41,6 +40,5 @@ services:
 databases:
   - name: petstore-db
     databaseName: petstore
-    user: postgres
     region: oregon
     plan: free
