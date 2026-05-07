@@ -1,8 +1,9 @@
 import { useState, useEffect } from 'react';
 import axios from 'axios';
 import PetList from '../components/PetList';
+import API_BASE_URL from '../config';
 
-export default function Home() {
+export default function Shop() {
   const [pets, setPets] = useState([]);
   const [loading, setLoading] = useState(true);
 
@@ -10,7 +11,7 @@ export default function Home() {
     const fetchPets = async () => {
       try {
         setLoading(true);
-        const response = await axios.get('http://localhost:8080/manese/pets');
+        const response = await axios.get(`${API_BASE_URL}/pets`);
         setPets(Array.isArray(response.data) ? response.data : []);
       } catch (error) {
         console.error('Error fetching pets:', error);

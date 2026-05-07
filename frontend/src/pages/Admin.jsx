@@ -4,8 +4,9 @@ import { Plus } from 'lucide-react';
 import { Dialog, DialogTitle, DialogContent, Snackbar, Alert } from '@mui/material';
 import PetList from '../components/PetList';
 import AddPetForm from '../components/AddPetForm';
+import API_BASE_URL from '../config';
 
-const API_URL = 'http://localhost:8080/manese/pets';
+const API_URL = `${API_BASE_URL}/pets`;
 
 export default function Admin() {
   const [pets, setPets] = useState([]);

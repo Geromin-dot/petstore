@@ -4,6 +4,7 @@ import axios from 'axios';
 import { CheckCircle } from 'lucide-react';
 import { Alert, AlertTitle, Container, Typography, Box } from '@mui/material';
 import { useCart } from '../context/CartContext';
+import API_BASE_URL from '../config';
 
 export default function Checkout() {
   const { cartItems, cartTotal, clearCart } = useCart();
@@ -32,7 +33,7 @@ export default function Checkout() {
         }))
       };
       
-      await axios.post('http://localhost:8080/manese/orders', orderData);
+      await axios.post(`${API_BASE_URL}/orders`, orderData);
       setSuccess(true);
       clearCart();
     } catch (error) {

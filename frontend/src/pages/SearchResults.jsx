@@ -2,6 +2,7 @@ import { useState, useEffect } from 'react';
 import { useSearchParams } from 'react-router-dom';
 import axios from 'axios';
 import PetList from '../components/PetList';
+import API_BASE_URL from '../config';
 
 export default function SearchResults() {
   const [searchParams] = useSearchParams();
@@ -14,7 +15,7 @@ export default function SearchResults() {
       if (!query) return;
       try {
         setLoading(true);
-        const response = await axios.get(`http://localhost:8080/manese/pets/search?query=${query}`);
+        const response = await axios.get(`${API_BASE_URL}/pets/search?query=${query}`);
         setPets(Array.isArray(response.data) ? response.data : []);
       } catch (error) {
         console.error('Error searching pets:', error);
