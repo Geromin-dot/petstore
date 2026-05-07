@@ -1,5 +1,6 @@
 import { Link } from 'react-router-dom';
 import { ArrowRight, ShieldCheck, Truck, Heart } from 'lucide-react';
+import heroImage from '../assets/hero.png';
 
 export default function Home() {
   return (
@@ -8,14 +9,14 @@ export default function Home() {
       <section className="hero-section">
         <div className="hero-content">
           <h1 className="hero-title">
-            Your Best Friend's <span className="text-gradient">Dream Store</span>
+            Find Your <span className="text-gradient">Perfect Companion</span>
           </h1>
           <p className="hero-subtitle">
-            Premium pet supplies, healthy food, and accessories for the furry, feathery, and scaly members of your family.
+            Find your perfect companion among our diverse collection of lovable pets, from cuddly friends to exotic feathery and scaly family members.
           </p>
           <div className="hero-actions">
             <Link to="/shop" className="btn btn-large">
-              Shop Now <ArrowRight size={20} />
+              Browse Pets <ArrowRight size={20} />
             </Link>
             <a href="#categories" className="btn-secondary btn-large">
               Explore Categories
@@ -26,7 +27,7 @@ export default function Home() {
           {/* USER PLACEHOLDER: Add your hero images here (replace the divs with img tags, keep the classes) */}
           <div className="hero-collage">
             <img
-              src="https://www.fearfreehappyhomes.com/wp-content/uploads/2021/09/bigstock-207607495.jpg"
+              src={heroImage}
               alt="Main Pet"
               className="image-placeholder collage-main"
               style={{ objectFit: 'cover' }}
@@ -53,22 +54,22 @@ export default function Home() {
           <div className="feature-icon-wrapper">
             <ShieldCheck size={32} className="feature-icon" />
           </div>
-          <h3>Vet Approved</h3>
-          <p>All our products are carefully selected and approved by veterinary professionals.</p>
+          <h3>Health Certified</h3>
+          <p>Every pet in our store undergoes rigorous health checks by veterinary professionals.</p>
         </div>
         <div className="feature-card">
           <div className="feature-icon-wrapper">
             <Truck size={32} className="feature-icon" />
           </div>
-          <h3>Fast Delivery</h3>
-          <p>Get your pet's essentials delivered straight to your door, fast and secure.</p>
+          <h3>Safe Rehoming</h3>
+          <p>We ensure a smooth and comfortable transition for your new pet to their forever home.</p>
         </div>
         <div className="feature-card">
           <div className="feature-icon-wrapper">
             <Heart size={32} className="feature-icon" />
           </div>
-          <h3>Premium Quality</h3>
-          <p>We only stock the highest quality brands that your pets will absolutely love.</p>
+          <h3>Ethical Sourcing</h3>
+          <p>We work exclusively with responsible breeders who prioritize animal welfare and love.</p>
         </div>
       </section>
 
@@ -76,7 +77,7 @@ export default function Home() {
       <section id="categories" className="landing-categories">
         <div className="section-header">
           <h2>Shop by Category</h2>
-          <p>Find exactly what you need for your specific companion</p>
+          <p>Find the perfect new addition to your family from our happy community</p>
         </div>
 
         <div className="category-grid">
