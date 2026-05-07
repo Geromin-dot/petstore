@@ -1,18 +1,16 @@
 import { useState, useEffect } from 'react';
-import { useParams } from 'react-router-dom';
 import axios from 'axios';
 import PetList from '../components/PetList';
 
-export default function CategoryPage() {
-  const { categoryName } = useParams();
+export default function Home() {
   const [pets, setPets] = useState([]);
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    const fetchPetsByCategory = async () => {
+    const fetchPets = async () => {
       try {
         setLoading(true);
-        const response = await axios.get(`http://localhost:8080/api/pets/category/${categoryName}`);
+        const response = await axios.get('http://localhost:8080/api/pets');
         setPets(Array.isArray(response.data) ? response.data : []);
       } catch (error) {
         console.error('Error fetching pets:', error);
@@ -20,14 +18,12 @@ export default function CategoryPage() {
         setLoading(false);
       }
     };
-    fetchPetsByCategory();
-  }, [categoryName]);
+    fetchPets();
+  }, []);
 
   return (
     <div>
-      <h1 style={{ marginBottom: '2rem', textTransform: 'capitalize' }}>
-        {categoryName === 'Fish' ? 'Fish' : `${categoryName}s`}
-      </h1>
+      <h1 style={{ marginBottom: '2rem' }}>All Pets</h1>
       {loading ? (
         <div className="loader-container"><div className="spinner"></div></div>
       ) : (

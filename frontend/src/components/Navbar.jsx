@@ -1,10 +1,12 @@
-import { Link, NavLink, useNavigate } from 'react-router-dom';
-import { PawPrint, ShoppingCart, ShieldCheck, Search } from 'lucide-react';
+import { Link, NavLink, useNavigate, useLocation } from 'react-router-dom';
+import { Dog, ShoppingCart, ShieldCheck, Search, User } from 'lucide-react';
 import { useCart } from '../context/CartContext';
 
 export default function Navbar() {
   const { cartItems } = useCart();
   const navigate = useNavigate();
+  const location = useLocation();
+  const isUserMode = !location.pathname.startsWith('/admin');
 
   const handleSearch = (e) => {
     e.preventDefault();
@@ -20,7 +22,7 @@ export default function Navbar() {
       <nav className="navbar">
         <div className="nav-container">
           <Link to="/" className="logo">
-            <PawPrint size={32} color="var(--primary)" />
+            <Dog size={32} color="var(--primary)" />
             PetStore Pro
           </Link>
 
@@ -40,6 +42,13 @@ export default function Navbar() {
               {cartItems.length > 0 && <span className="cart-badge">{cartItems.length}</span>}
             </Link>
             <NavLink 
+              to="/" 
+              className={`btn ${isUserMode ? 'btn-admin-active' : 'btn-secondary'}`}
+              style={{ padding: '0.5rem 1rem' }}
+            >
+              <User size={18} /> User
+            </NavLink>
+            <NavLink 
               to="/admin" 
               className={({ isActive }) => `btn ${isActive ? 'btn-admin-active' : 'btn-secondary'}`}
               style={{ padding: '0.5rem 1rem' }}
@@ -52,11 +61,12 @@ export default function Navbar() {
 
       <div className="sub-navbar">
         <div className="nav-links">
-          <NavLink to="/" end className={({ isActive }) => isActive ? 'nav-link active' : 'nav-link'}>All</NavLink>
+          <NavLink to="/shop" end className={({ isActive }) => isActive ? 'nav-link active' : 'nav-link'}>Shop All</NavLink>
           <NavLink to="/category/Dog" className={({ isActive }) => isActive ? 'nav-link active' : 'nav-link'}>Dogs</NavLink>
           <NavLink to="/category/Cat" className={({ isActive }) => isActive ? 'nav-link active' : 'nav-link'}>Cats</NavLink>
           <NavLink to="/category/Bird" className={({ isActive }) => isActive ? 'nav-link active' : 'nav-link'}>Birds</NavLink>
           <NavLink to="/category/Fish" className={({ isActive }) => isActive ? 'nav-link active' : 'nav-link'}>Fish</NavLink>
+          <NavLink to="/category/Other" className={({ isActive }) => isActive ? 'nav-link active' : 'nav-link'}>Others</NavLink>
         </div>
       </div>
     </>

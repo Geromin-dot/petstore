@@ -53,15 +53,15 @@ export default function PetList({ pets, isAdminView, onDelete, onEdit }) {
                   <div style={{ display: 'flex', gap: '0.5rem' }}>
                     <button 
                       onClick={() => onEdit && onEdit(pet)}
-                      className="btn-secondary"
-                      style={{ padding: '0.25rem 0.5rem', borderRadius: '0.25rem', border: 'none', cursor: 'pointer', background: 'transparent' }}
+                      className="btn-theme-action"
+                      style={{ padding: '0.25rem 0.5rem', borderRadius: '0.25rem', cursor: 'pointer' }}
                     >
                       Edit
                     </button>
                     <button 
                       onClick={() => onDelete(pet.id)}
-                      className="btn-danger"
-                      style={{ padding: '0.25rem 0.5rem', borderRadius: '0.25rem', border: 'none', cursor: 'pointer', background: 'transparent' }}
+                      className="btn-theme-action"
+                      style={{ padding: '0.25rem 0.5rem', borderRadius: '0.25rem', cursor: 'pointer' }}
                     >
                       Delete
                     </button>
