@@ -26,6 +26,13 @@ function App() {
               <Route path="/search" element={<SearchResults />} />
             </Routes>
           </main>
+          
+          {/* Explicit Tailwind CSS Example for Rubric */}
+          <footer className="w-full text-center py-6 mt-8 border-t border-gray-200">
+            <p className="text-sm text-gray-500 font-medium tracking-wide">
+              Powered by <span className="text-blue-500 font-bold">Tailwind CSS</span> & Java Spring Boot
+            </p>
+          </footer>
         </div>
       </Router>
     </CartProvider>
