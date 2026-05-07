@@ -1,4 +1,4 @@
-package com.petstore.backend.model;
+package com.manese.petstore.model;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;

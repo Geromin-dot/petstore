@@ -1,10 +1,10 @@
-package com.petstore.backend.controller;
+package com.manese.petstore.controller;
 
-import com.petstore.backend.model.Order;
-import com.petstore.backend.model.OrderItem;
-import com.petstore.backend.model.Pet;
-import com.petstore.backend.repository.OrderRepository;
-import com.petstore.backend.repository.PetRepository;
+import com.manese.petstore.model.Order;
+import com.manese.petstore.model.OrderItem;
+import com.manese.petstore.model.Pet;
+import com.manese.petstore.repository.OrderRepository;
+import com.manese.petstore.repository.PetRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
