@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping("/api/pets")
+@RequestMapping("/manese/pets")
 @CrossOrigin(origins = "http://localhost:5173") // Allow Vite frontend
 public class PetController {
 

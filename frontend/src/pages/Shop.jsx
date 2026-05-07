@@ -10,7 +10,7 @@ export default function Home() {
     const fetchPets = async () => {
       try {
         setLoading(true);
-        const response = await axios.get('http://localhost:8080/api/pets');
+        const response = await axios.get('http://localhost:8080/manese/pets');
         setPets(Array.isArray(response.data) ? response.data : []);
       } catch (error) {
         console.error('Error fetching pets:', error);

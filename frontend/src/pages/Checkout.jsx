@@ -31,7 +31,7 @@ export default function Checkout() {
         }))
       };
       
-      await axios.post('http://localhost:8080/api/orders', orderData);
+      await axios.post('http://localhost:8080/manese/orders', orderData);
       setSuccess(true);
       clearCart();
     } catch (error) {

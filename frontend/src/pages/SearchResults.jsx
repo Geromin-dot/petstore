@@ -14,7 +14,7 @@ export default function SearchResults() {
       if (!query) return;
       try {
         setLoading(true);
-        const response = await axios.get(`http://localhost:8080/api/pets/search?query=${query}`);
+        const response = await axios.get(`http://localhost:8080/manese/pets/search?query=${query}`);
         setPets(Array.isArray(response.data) ? response.data : []);
       } catch (error) {
         console.error('Error searching pets:', error);

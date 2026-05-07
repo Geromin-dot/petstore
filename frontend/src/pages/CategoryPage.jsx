@@ -12,7 +12,7 @@ export default function CategoryPage() {
     const fetchPetsByCategory = async () => {
       try {
         setLoading(true);
-        const response = await axios.get(`http://localhost:8080/api/pets/category/${categoryName}`);
+        const response = await axios.get(`http://localhost:8080/manese/pets/category/${categoryName}`);
         setPets(Array.isArray(response.data) ? response.data : []);
       } catch (error) {
         console.error('Error fetching pets:', error);

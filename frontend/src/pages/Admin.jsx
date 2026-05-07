@@ -4,7 +4,7 @@ import { Plus } from 'lucide-react';
 import PetList from '../components/PetList';
 import AddPetForm from '../components/AddPetForm';
 
-const API_URL = 'http://localhost:8080/api/pets';
+const API_URL = 'http://localhost:8080/manese/pets';
 
 export default function Admin() {
   const [pets, setPets] = useState([]);
